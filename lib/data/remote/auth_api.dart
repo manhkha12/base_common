@@ -23,15 +23,15 @@ class AuthApi {
   //   return resp;
   // }
 
-  // Future<Map<String, dynamic>> register(
-  //     Map<String, dynamic> params ) async {
-  //   final resp = await _apiHandler.post(
-  //     '/auth/register',
-  //     body: params,
+  Future<Map<String, dynamic>> register(
+      Map<String, dynamic> params ) async {
+    final resp = await _apiHandler.post(
+      '/auth/register',
+      body: params,
       
-  //   );
-  //   return resp;
-  // }
+    );
+    return resp;
+  }
 
   // Future<Map<String, dynamic>> authToken(String refreshToken) async {
   //   final resp = await _apiHandler.post(

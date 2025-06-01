@@ -13,7 +13,14 @@ class AuthRepository {
     required this.authApi,
   });
 
-    bool get hasAccessToken => appProvider.hasAccessToken;
+
+  Future<User> register(Map<String, dynamic> params) async {
+    final response = await authApi.register(params);
+    return User.fromJson(response['user']);
+  }
+
+
+  bool get hasAccessToken => appProvider.hasAccessToken;
 
   String? get refreshToken => appProvider.refreshToken;
 
