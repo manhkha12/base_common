@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "147712995895",
+    "project_id": "kat-garden",
+    "storage_bucket": "kat-garden.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:147712995895:android:25f193c9612951bd3045b2",
+        "android_client_info": {
+          "package_name": "com.katstudio.garden"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApzJ7YqxqdVdbLQBRn1WfYYMKI7C_cv60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

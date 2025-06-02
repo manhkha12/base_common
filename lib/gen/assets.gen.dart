@@ -44,12 +44,17 @@ class $AssetsImagesGen {
   /// File path: assets/images/configurating.json
   String get configurating => 'assets/images/configurating.json';
 
+
+/// File path: assets/images/smart_home.json
+  String get smartHome => 'assets/images/smart_home.json';
+
   /// File path: assets/images/user.png
   AssetGenImage get user => const AssetGenImage('assets/images/user.png');
 
   /// List of all assets
   List<String> get values => [
         configurating,
+        smartHome
       ];
 
   /// List of all assets as images
