@@ -1,24 +1,17 @@
-
 import 'package:smart_home/data/local/app_provider.dart';
 import 'package:smart_home/data/remote/auth_api.dart';
 import 'package:smart_home/models/user.dart';
 
 class AuthRepository {
-
-  final AppProvider appProvider;
   final AuthApi authApi;
+  final AppProvider appProvider;
 
-  AuthRepository({
-    required this.appProvider,
-    required this.authApi,
-  });
-
+  AuthRepository(this.authApi, this.appProvider);
 
   Future<User> register(Map<String, dynamic> params) async {
     final response = await authApi.register(params);
     return User.fromJson(response['user']);
   }
-
 
   bool get hasAccessToken => appProvider.hasAccessToken;
 
@@ -39,5 +32,4 @@ class AuthRepository {
     await appProvider.setAccessToken(null);
     await appProvider.setRefreshToken(null);
   }
-
 }
