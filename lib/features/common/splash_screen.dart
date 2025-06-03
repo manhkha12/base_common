@@ -4,7 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smart_home/gen/assets.gen.dart';
 import 'package:smart_home/shared/cubits/app_cubit/app_cubit.dart';
-import 'package:smart_home/shared/widgets/app_text.dart';
+
+import '../../routes.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -32,28 +33,27 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // body: BlocListener<AppCubit, AppState>(
-      //   listener: (context, state) => state.whenOrNull(
-      //     authorized: (user) =>
-      //         Navigator.of(context).pushReplacementNamed(RouteName.main),
-      //     unAuthorized: () =>
-      //         Navigator.of(context).pushReplacementNamed(RouteName.login),
-      //   ),
-      body: Center(
+        body: BlocListener<AppCubit, AppState>(
+      listener: (context, state) => state.whenOrNull(
+        authorized: (user) =>
+            Navigator.of(context).pushReplacementNamed(RouteName.main),
+        unAuthorized: () =>
+            Navigator.of(context).pushReplacementNamed(RouteName.login),
+      ),
+      child: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: AppText('con cac'),
-          // child: Lottie.asset(
-          //   Assets.images.plantGrow,
-          //   controller: _controller,
-          //   onLoaded: (composition) {
-          //     _controller
-          //       ..duration = composition.duration
-          //       ..forward();
-          //   },
-          // ),
+          child: Lottie.asset(
+            Assets.images.smartHome,
+            controller: _controller,
+            onLoaded: (composition) {
+              _controller
+                ..duration = composition.duration
+                ..forward();
+            },
+          ),
         ),
       ),
-    );
+    ));
   }
 }
