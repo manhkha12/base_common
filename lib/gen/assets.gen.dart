@@ -34,8 +34,14 @@ class $AssetsIconsGen {
   /// File path: assets/icons/iconBack.svg
   SvgGenImage get iconBack => const SvgGenImage('assets/icons/back.svg');
 
+   /// File path: assets/icons/eyeOn.svg
+  SvgGenImage get eyeOn => const SvgGenImage('assets/icons/eyeOn.svg');
+
+   /// File path: assets/icons/eyeOff.svg
+  SvgGenImage get eyeOff => const SvgGenImage('assets/icons/eyeOff.svg');
+
   /// List of all assets
-  List<SvgGenImage> get values => [boardIcon, iconBack];
+  List<SvgGenImage> get values => [boardIcon, iconBack, eyeOn, eyeOff];
 }
 
 class $AssetsImagesGen {
@@ -44,23 +50,28 @@ class $AssetsImagesGen {
   /// File path: assets/images/configurating.json
   String get configurating => 'assets/images/configurating.json';
 
-
-/// File path: assets/images/smart_home.json
+  /// File path: assets/images/smart_home.json
   String get smartHome => 'assets/images/smart_home.json';
+
+  /// File path: assets/images/home_control.json
+  String get homeControl => 'assets/images/home_control.json';
+
+  /// File path: assets/images/home_service.json
+  String get homeService => 'assets/images/home_service.json';
 
   /// File path: assets/images/user.png
   AssetGenImage get user => const AssetGenImage('assets/images/user.png');
 
+  /// File path: assets/images/user.png
+  AssetGenImage get smartHomeBackground =>
+      const AssetGenImage('assets/images/smart_home_background.png');
+
   /// List of all assets
-  List<String> get values => [
-        configurating,
-        smartHome
-      ];
+  List<String> get values =>
+      [configurating, smartHome, homeControl, homeService];
 
   /// List of all assets as images
-  List<AssetGenImage> get images => [
-        user,
-      ];
+  List<AssetGenImage> get images => [user, smartHomeBackground];
 }
 
 class Assets {

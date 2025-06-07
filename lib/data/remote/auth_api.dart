@@ -33,17 +33,17 @@ class AuthApi {
     return resp;
   }
 
-  // Future<Map<String, dynamic>> authToken(String refreshToken) async {
-  //   final resp = await _apiHandler.post(
-  //     '/auth/auth_token',
-  //     options: Options(
-  //       headers: {
-  //         'Authorization': 'Bearer $refreshToken',
-  //       },
-  //     ),
-  //   );
-  //   return resp;
-  // }
+  Future<Map<String, dynamic>> authToken(String refreshToken) async {
+    final resp = await _apiHandler.post(
+      '/auth/refresh_token',
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $refreshToken',
+        },
+      ),
+    );
+    return resp;
+  }
 
   
 }

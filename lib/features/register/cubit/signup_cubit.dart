@@ -8,6 +8,23 @@ class SignupCubit extends Cubit<SignupState> {
     required this.authRepository,
   }) : super(SignupState());
 
+
+  void setEmail(String email){
+    emit(state.copyWith(email: email));
+  }
+  void setPassword(String password) {
+    emit(state.copyWith(password: password));
+  }
+  void setConfirmPassword(String confirmPassword) {
+    emit(state.copyWith(confirmPassword: confirmPassword));
+  }
+  void setFullName(String fullName) {
+    emit(state.copyWith(fullName: fullName));
+  }
+  void setUsername(String username) {
+    emit(state.copyWith(username: username));
+  }
+
   Future<void> register() async {
     try {
       emit(state.copyWith(isLoading: true));

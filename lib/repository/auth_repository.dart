@@ -22,11 +22,11 @@ class AuthRepository {
     await appProvider.setRefreshToken(response['refresh_token']);
   }
 
-  // Future<User> authToken() async {
-  //   // final resp = await authApi.authToken(refreshToken!);
-  //   // await updateToken(resp);
-  //   // return User.fromJson(resp['user']);
-  // }
+  Future<User> authToken() async {
+    final resp = await authApi.authToken(refreshToken!);
+    await updateToken(resp);
+    return User.fromJson(resp['user']);
+  }
 
   Future<void> logout() async {
     await appProvider.setAccessToken(null);
