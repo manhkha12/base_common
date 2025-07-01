@@ -7,6 +7,7 @@ import 'package:smart_home/features/login/login_screen.dart';
 import 'package:smart_home/features/main_screen.dart';
 import 'package:smart_home/features/register/cubit/signup_cubit.dart';
 import 'package:smart_home/features/register/register.dart';
+import 'package:smart_home/shared/cubits/app_cubit/app_cubit.dart';
 
 class RouteName {
   static const String splash = '/';
@@ -27,7 +28,10 @@ RouteFactory onGenerateRoutes() {
     if (settings.name == RouteName.main) {
       return MaterialPageRoute(
         settings: settings,
-        builder: (context) => const MainScreen(),
+        builder: (context) => BlocProvider(
+          create: (_) => GetIt.I<AppCubit>(),
+          child: const MainScreen(),
+        ),
       );
     }
     if (settings.name == RouteName.intro) {

@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_home/features/register/cubit/signup_state.dart';
+import 'package:smart_home/models/app_error.dart';
 import 'package:smart_home/repository/auth_repository.dart';
 
 class SignupCubit extends Cubit<SignupState> {
@@ -32,7 +33,7 @@ class SignupCubit extends Cubit<SignupState> {
       await authRepository.register(params);
       emit(state.copyWith(isLoading: false, isSignupSuccess: true));
     } catch (e) {
-      emit(state.copyWith(isLoading: false));
+      emit(state.copyWith(isLoading: false,error: AppError.data(e.toString())));
     }
   }
 }

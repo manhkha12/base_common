@@ -8,6 +8,12 @@ class AuthRepository {
 
   AuthRepository(this.authApi, this.appProvider);
 
+  Future<User> login (Map<String, dynamic> params) async {
+    final response = await authApi.login(params);
+    await updateToken(response);
+    return User.fromJson(response['user']);
+  }
+
   Future<User> register(Map<String, dynamic> params) async {
     final response = await authApi.register(params);
     return User.fromJson(response['user']);

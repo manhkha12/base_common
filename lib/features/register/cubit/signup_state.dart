@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:smart_home/models/app_error.dart';
 part 'signup_state.freezed.dart';
 @freezed
 
@@ -11,6 +12,8 @@ class SignupState with _$SignupState{
      String? confirmPassword,
     @Default(false) bool isLoading,
     @Default(false) bool isSignupSuccess,
+    AppError? error,
+    
 
     
   }) = _SignupState;

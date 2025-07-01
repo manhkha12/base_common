@@ -34,14 +34,24 @@ class $AssetsIconsGen {
   /// File path: assets/icons/iconBack.svg
   SvgGenImage get iconBack => const SvgGenImage('assets/icons/back.svg');
 
-   /// File path: assets/icons/eyeOn.svg
+  /// File path: assets/icons/eyeOn.svg
   SvgGenImage get eyeOn => const SvgGenImage('assets/icons/eyeOn.svg');
 
-   /// File path: assets/icons/eyeOff.svg
+  /// File path: assets/icons/eyeOff.svg
   SvgGenImage get eyeOff => const SvgGenImage('assets/icons/eyeOff.svg');
 
+  /// File path: assets/icons/home.svg
+  SvgGenImage get home => const SvgGenImage('assets/icons/homePage.svg');
+
+  /// File path: assets/icons/profile.svg
+  SvgGenImage get profile => const SvgGenImage('assets/icons/profilePage.svg');
+
+  /// File path: assets/icons/device.svg
+  SvgGenImage get device => const SvgGenImage('assets/icons/device.svg');
+
   /// List of all assets
-  List<SvgGenImage> get values => [boardIcon, iconBack, eyeOn, eyeOff];
+  List<SvgGenImage> get values =>
+      [boardIcon, iconBack, eyeOn, eyeOff, home, profile, device];
 }
 
 class $AssetsImagesGen {

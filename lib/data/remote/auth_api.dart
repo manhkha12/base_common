@@ -23,6 +23,14 @@ class AuthApi {
   //   return resp;
   // }
 
+  Future<Map<String,dynamic>> login(Map<String, dynamic> params) async {
+    final resp = await _apiHandler.post(
+      '/auth/login',
+      body: params,
+    );
+    return resp;
+  }
+
   Future<Map<String, dynamic>> register(
       Map<String, dynamic> params ) async {
     final resp = await _apiHandler.post(
