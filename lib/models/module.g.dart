@@ -25,6 +25,10 @@ _$ModuleImpl _$$ModuleImplFromJson(Map<String, dynamic> json) => _$ModuleImpl(
               ?.map((e) => Node.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      rooms: (json['rooms'] as List<dynamic>?)
+              ?.map((e) => Room.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
       updatedAt: _$JsonConverterFromJson<String, DateTime>(
           json['updated_at'], const DateTimeConverter().fromJson),
       activeAt: const DateTimeOrNullConverter()
@@ -51,6 +55,7 @@ Map<String, dynamic> _$$ModuleImplToJson(_$ModuleImpl instance) =>
       'owner_id': instance.ownerId,
       'created_at': instance.createdAt?.toIso8601String(),
       'nodes': instance.nodes,
+      'rooms': instance.rooms,
       'updated_at': _$JsonConverterToJson<String, DateTime>(
           instance.updatedAt, const DateTimeConverter().toJson),
       'active_at': const DateTimeOrNullConverter().toJson(instance.activeAt),

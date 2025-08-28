@@ -37,6 +37,7 @@ Future<void> registerCubitModules(GetIt getIt) async {
       ),
     )
     ..registerFactory(()=> HomePageCubit(
+      appCubit: getIt(),
       moduleRespository: getIt(),
     ));
     // ..registerLazySingleton(

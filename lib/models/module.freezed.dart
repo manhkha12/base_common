@@ -41,7 +41,8 @@ mixin _$Module {
   String? get ownerId => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
   DateTime? get createdAt => throw _privateConstructorUsedError;
-  List<Node> get nodes =>
+  List<Node> get nodes => throw _privateConstructorUsedError;
+  List<Room>? get rooms =>
       throw _privateConstructorUsedError; // @Default([]) List<Sensor> sensors,
   @JsonKey(name: 'updated_at')
   @DateTimeConverter()
@@ -84,6 +85,7 @@ abstract class $ModuleCopyWith<$Res> {
       @JsonKey(name: 'owner_id') String? ownerId,
       @JsonKey(name: 'created_at') DateTime? createdAt,
       List<Node> nodes,
+      List<Room>? rooms,
       @JsonKey(name: 'updated_at') @DateTimeConverter() DateTime? updatedAt,
       @JsonKey(name: 'active_at') @DateTimeOrNullConverter() DateTime? activeAt,
       @JsonKey(name: 'mac_address') String macAddress,
@@ -121,6 +123,7 @@ class _$ModuleCopyWithImpl<$Res, $Val extends Module>
     Object? ownerId = freezed,
     Object? createdAt = freezed,
     Object? nodes = null,
+    Object? rooms = freezed,
     Object? updatedAt = freezed,
     Object? activeAt = freezed,
     Object? macAddress = null,
@@ -177,6 +180,10 @@ class _$ModuleCopyWithImpl<$Res, $Val extends Module>
           ? _value.nodes
           : nodes // ignore: cast_nullable_to_non_nullable
               as List<Node>,
+      rooms: freezed == rooms
+          ? _value.rooms
+          : rooms // ignore: cast_nullable_to_non_nullable
+              as List<Room>?,
       updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
@@ -239,6 +246,7 @@ abstract class _$$ModuleImplCopyWith<$Res> implements $ModuleCopyWith<$Res> {
       @JsonKey(name: 'owner_id') String? ownerId,
       @JsonKey(name: 'created_at') DateTime? createdAt,
       List<Node> nodes,
+      List<Room>? rooms,
       @JsonKey(name: 'updated_at') @DateTimeConverter() DateTime? updatedAt,
       @JsonKey(name: 'active_at') @DateTimeOrNullConverter() DateTime? activeAt,
       @JsonKey(name: 'mac_address') String macAddress,
@@ -275,6 +283,7 @@ class __$$ModuleImplCopyWithImpl<$Res>
     Object? ownerId = freezed,
     Object? createdAt = freezed,
     Object? nodes = null,
+    Object? rooms = freezed,
     Object? updatedAt = freezed,
     Object? activeAt = freezed,
     Object? macAddress = null,
@@ -331,6 +340,10 @@ class __$$ModuleImplCopyWithImpl<$Res>
           ? _value._nodes
           : nodes // ignore: cast_nullable_to_non_nullable
               as List<Node>,
+      rooms: freezed == rooms
+          ? _value._rooms
+          : rooms // ignore: cast_nullable_to_non_nullable
+              as List<Room>?,
       updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
@@ -375,6 +388,7 @@ class _$ModuleImpl extends _Module {
       @JsonKey(name: 'owner_id') this.ownerId,
       @JsonKey(name: 'created_at') this.createdAt,
       final List<Node> nodes = const [],
+      final List<Room>? rooms = const [],
       @JsonKey(name: 'updated_at') @DateTimeConverter() this.updatedAt,
       @JsonKey(name: 'active_at') @DateTimeOrNullConverter() this.activeAt,
       @JsonKey(name: 'mac_address') required this.macAddress,
@@ -383,6 +397,7 @@ class _$ModuleImpl extends _Module {
       @JsonKey(name: 'is_online') required this.isOnline})
       : _userIds = userIds,
         _nodes = nodes,
+        _rooms = rooms,
         super._();
 
   factory _$ModuleImpl.fromJson(Map<String, dynamic> json) =>
@@ -437,6 +452,17 @@ class _$ModuleImpl extends _Module {
     return EqualUnmodifiableListView(_nodes);
   }
 
+  final List<Room>? _rooms;
+  @override
+  @JsonKey()
+  List<Room>? get rooms {
+    final value = _rooms;
+    if (value == null) return null;
+    if (_rooms is EqualUnmodifiableListView) return _rooms;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
 // @Default([]) List<Sensor> sensors,
   @override
   @JsonKey(name: 'updated_at')
@@ -460,7 +486,7 @@ class _$ModuleImpl extends _Module {
 
   @override
   String toString() {
-    return 'Module(id: $id, name: $name, mcuType: $mcuType, chipId: $chipId, productVersion: $productVersion, firmwareVersion: $firmwareVersion, houseId: $houseId, roomId: $roomId, userIds: $userIds, ownerId: $ownerId, createdAt: $createdAt, nodes: $nodes, updatedAt: $updatedAt, activeAt: $activeAt, macAddress: $macAddress, productCopyright: $productCopyright, connection: $connection, isOnline: $isOnline)';
+    return 'Module(id: $id, name: $name, mcuType: $mcuType, chipId: $chipId, productVersion: $productVersion, firmwareVersion: $firmwareVersion, houseId: $houseId, roomId: $roomId, userIds: $userIds, ownerId: $ownerId, createdAt: $createdAt, nodes: $nodes, rooms: $rooms, updatedAt: $updatedAt, activeAt: $activeAt, macAddress: $macAddress, productCopyright: $productCopyright, connection: $connection, isOnline: $isOnline)';
   }
 
   @override
@@ -483,6 +509,7 @@ class _$ModuleImpl extends _Module {
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             const DeepCollectionEquality().equals(other._nodes, _nodes) &&
+            const DeepCollectionEquality().equals(other._rooms, _rooms) &&
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
             (identical(other.activeAt, activeAt) ||
@@ -499,26 +526,28 @@ class _$ModuleImpl extends _Module {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      name,
-      mcuType,
-      chipId,
-      productVersion,
-      firmwareVersion,
-      houseId,
-      roomId,
-      const DeepCollectionEquality().hash(_userIds),
-      ownerId,
-      createdAt,
-      const DeepCollectionEquality().hash(_nodes),
-      updatedAt,
-      activeAt,
-      macAddress,
-      productCopyright,
-      connection,
-      isOnline);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        name,
+        mcuType,
+        chipId,
+        productVersion,
+        firmwareVersion,
+        houseId,
+        roomId,
+        const DeepCollectionEquality().hash(_userIds),
+        ownerId,
+        createdAt,
+        const DeepCollectionEquality().hash(_nodes),
+        const DeepCollectionEquality().hash(_rooms),
+        updatedAt,
+        activeAt,
+        macAddress,
+        productCopyright,
+        connection,
+        isOnline
+      ]);
 
   /// Create a copy of Module
   /// with the given fields replaced by the non-null parameter values.
@@ -550,6 +579,7 @@ abstract class _Module extends Module {
       @JsonKey(name: 'owner_id') final String? ownerId,
       @JsonKey(name: 'created_at') final DateTime? createdAt,
       final List<Node> nodes,
+      final List<Room>? rooms,
       @JsonKey(name: 'updated_at')
       @DateTimeConverter()
       final DateTime? updatedAt,
@@ -597,7 +627,9 @@ abstract class _Module extends Module {
   @JsonKey(name: 'created_at')
   DateTime? get createdAt;
   @override
-  List<Node> get nodes; // @Default([]) List<Sensor> sensors,
+  List<Node> get nodes;
+  @override
+  List<Room>? get rooms; // @Default([]) List<Sensor> sensors,
   @override
   @JsonKey(name: 'updated_at')
   @DateTimeConverter()
