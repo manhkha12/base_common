@@ -9,18 +9,17 @@ part of 'room.dart';
 _$RoomImpl _$$RoomImplFromJson(Map<String, dynamic> json) => _$RoomImpl(
       id: json['_id'] as String,
       name: json['name'] as String,
-      houseId: json['house_id'] as String,
-      icon: json['icon'] as String?,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      homeId: json['home_id'] as String,
+      background: json['background'] as String?,
+      modules:
+          (json['modules'] as List<dynamic>?)?.map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$$RoomImplToJson(_$RoomImpl instance) =>
     <String, dynamic>{
       '_id': instance.id,
       'name': instance.name,
-      'house_id': instance.houseId,
-      'icon': instance.icon,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
+      'home_id': instance.homeId,
+      'background': instance.background,
+      'modules': instance.modules,
     };

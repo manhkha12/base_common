@@ -23,11 +23,11 @@ mixin _$Room {
   @JsonKey(name: '_id')
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'house_id')
-  String get houseId => throw _privateConstructorUsedError;
-  String? get icon => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
-  DateTime get updatedAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'home_id')
+  String get homeId =>
+      throw _privateConstructorUsedError; // sửa từ house_id → home_id
+  String? get background => throw _privateConstructorUsedError;
+  List<String>? get modules => throw _privateConstructorUsedError;
 
   /// Serializes this Room to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,10 +46,9 @@ abstract class $RoomCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: '_id') String id,
       String name,
-      @JsonKey(name: 'house_id') String houseId,
-      String? icon,
-      DateTime createdAt,
-      DateTime updatedAt});
+      @JsonKey(name: 'home_id') String homeId,
+      String? background,
+      List<String>? modules});
 }
 
 /// @nodoc
@@ -69,10 +68,9 @@ class _$RoomCopyWithImpl<$Res, $Val extends Room>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? houseId = null,
-    Object? icon = freezed,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? homeId = null,
+    Object? background = freezed,
+    Object? modules = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -83,22 +81,18 @@ class _$RoomCopyWithImpl<$Res, $Val extends Room>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      houseId: null == houseId
-          ? _value.houseId
-          : houseId // ignore: cast_nullable_to_non_nullable
+      homeId: null == homeId
+          ? _value.homeId
+          : homeId // ignore: cast_nullable_to_non_nullable
               as String,
-      icon: freezed == icon
-          ? _value.icon
-          : icon // ignore: cast_nullable_to_non_nullable
+      background: freezed == background
+          ? _value.background
+          : background // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+      modules: freezed == modules
+          ? _value.modules
+          : modules // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ) as $Val);
   }
 }
@@ -113,10 +107,9 @@ abstract class _$$RoomImplCopyWith<$Res> implements $RoomCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: '_id') String id,
       String name,
-      @JsonKey(name: 'house_id') String houseId,
-      String? icon,
-      DateTime createdAt,
-      DateTime updatedAt});
+      @JsonKey(name: 'home_id') String homeId,
+      String? background,
+      List<String>? modules});
 }
 
 /// @nodoc
@@ -133,10 +126,9 @@ class __$$RoomImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? houseId = null,
-    Object? icon = freezed,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? homeId = null,
+    Object? background = freezed,
+    Object? modules = freezed,
   }) {
     return _then(_$RoomImpl(
       id: null == id
@@ -147,22 +139,18 @@ class __$$RoomImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      houseId: null == houseId
-          ? _value.houseId
-          : houseId // ignore: cast_nullable_to_non_nullable
+      homeId: null == homeId
+          ? _value.homeId
+          : homeId // ignore: cast_nullable_to_non_nullable
               as String,
-      icon: freezed == icon
-          ? _value.icon
-          : icon // ignore: cast_nullable_to_non_nullable
+      background: freezed == background
+          ? _value.background
+          : background // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+      modules: freezed == modules
+          ? _value._modules
+          : modules // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ));
   }
 }
@@ -173,10 +161,10 @@ class _$RoomImpl implements _Room {
   _$RoomImpl(
       {@JsonKey(name: '_id') required this.id,
       required this.name,
-      @JsonKey(name: 'house_id') required this.houseId,
-      this.icon,
-      required this.createdAt,
-      required this.updatedAt});
+      @JsonKey(name: 'home_id') required this.homeId,
+      this.background,
+      final List<String>? modules})
+      : _modules = modules;
 
   factory _$RoomImpl.fromJson(Map<String, dynamic> json) =>
       _$$RoomImplFromJson(json);
@@ -187,18 +175,24 @@ class _$RoomImpl implements _Room {
   @override
   final String name;
   @override
-  @JsonKey(name: 'house_id')
-  final String houseId;
+  @JsonKey(name: 'home_id')
+  final String homeId;
+// sửa từ house_id → home_id
   @override
-  final String? icon;
+  final String? background;
+  final List<String>? _modules;
   @override
-  final DateTime createdAt;
-  @override
-  final DateTime updatedAt;
+  List<String>? get modules {
+    final value = _modules;
+    if (value == null) return null;
+    if (_modules is EqualUnmodifiableListView) return _modules;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'Room(id: $id, name: $name, houseId: $houseId, icon: $icon, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Room(id: $id, name: $name, homeId: $homeId, background: $background, modules: $modules)';
   }
 
   @override
@@ -208,18 +202,16 @@ class _$RoomImpl implements _Room {
             other is _$RoomImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.houseId, houseId) || other.houseId == houseId) &&
-            (identical(other.icon, icon) || other.icon == icon) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+            (identical(other.homeId, homeId) || other.homeId == homeId) &&
+            (identical(other.background, background) ||
+                other.background == background) &&
+            const DeepCollectionEquality().equals(other._modules, _modules));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, houseId, icon, createdAt, updatedAt);
+  int get hashCode => Object.hash(runtimeType, id, name, homeId, background,
+      const DeepCollectionEquality().hash(_modules));
 
   /// Create a copy of Room
   /// with the given fields replaced by the non-null parameter values.
@@ -241,10 +233,9 @@ abstract class _Room implements Room {
   factory _Room(
       {@JsonKey(name: '_id') required final String id,
       required final String name,
-      @JsonKey(name: 'house_id') required final String houseId,
-      final String? icon,
-      required final DateTime createdAt,
-      required final DateTime updatedAt}) = _$RoomImpl;
+      @JsonKey(name: 'home_id') required final String homeId,
+      final String? background,
+      final List<String>? modules}) = _$RoomImpl;
 
   factory _Room.fromJson(Map<String, dynamic> json) = _$RoomImpl.fromJson;
 
@@ -254,14 +245,12 @@ abstract class _Room implements Room {
   @override
   String get name;
   @override
-  @JsonKey(name: 'house_id')
-  String get houseId;
+  @JsonKey(name: 'home_id')
+  String get homeId; // sửa từ house_id → home_id
   @override
-  String? get icon;
+  String? get background;
   @override
-  DateTime get createdAt;
-  @override
-  DateTime get updatedAt;
+  List<String>? get modules;
 
   /// Create a copy of Room
   /// with the given fields replaced by the non-null parameter values.

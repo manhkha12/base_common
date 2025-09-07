@@ -17,10 +17,6 @@ class SignupState with _$SignupState {
   SignupState._();
 
   Map<String, dynamic> toRegisterParams() {
-    print(username);
-    print(email);
-    print(password);
-    print(fullName);
     return {
       'username': username ?? '',
       'email': email ?? '',

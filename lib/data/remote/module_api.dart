@@ -94,6 +94,22 @@ class ModuleApi {
     return resp;
   }
 
+  Future<Map<String, dynamic>> addRoom(Map<String, dynamic> params) async {
+    final resp = await apiHandler.post('/rooms/create', body: params);
+
+    return resp;
+  }
+
+  Future<List<dynamic>> getImage() async {
+    final resp = await apiHandler.get('/images/image');
+    return resp;
+  }
+  Future<List<dynamic>> getRooms(
+      String homeId) async {
+    final resp = await apiHandler.get('/rooms/home/$homeId');
+    return resp;
+  }
+
   // Future<Map<String, dynamic>> updateNameNode(
   //     Map<String, dynamic> params) async {
   //   final resp = await apiHandler.put('/module/node/rename', body: params);

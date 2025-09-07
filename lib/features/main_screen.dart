@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:smart_home/features/device/add_module/add_module_screen.dart';
 import 'package:smart_home/features/device/module_page/module_page.dart';
+import 'package:smart_home/features/home/cubit/home_page_cubit.dart';
 import 'package:smart_home/features/home/home_page.dart';
 import 'package:smart_home/features/setting/profile_page.dart';
 import 'package:smart_home/gen/assets.gen.dart';
@@ -48,7 +50,10 @@ class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
         items: [
           BottomNavigationItem(
             icon: Assets.icons.home.path,
-            page: const HomePage(),
+            page: BlocProvider(
+              create: (_) => GetIt.I<HomePageCubit>(),
+              child: const HomePage(),
+            ),
           ),
           BottomNavigationItem(
             icon: Assets.icons.device.path,

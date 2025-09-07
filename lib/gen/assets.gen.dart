@@ -46,6 +46,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/wifi.svg
   SvgGenImage get wifi => const SvgGenImage('assets/icons/wifii.svg');
 
+  /// File path: assets/icons/close.svg
+  SvgGenImage get close => const SvgGenImage('assets/icons/close.svg');
+
   /// File path: assets/icons/profile.svg
   SvgGenImage get profile => const SvgGenImage('assets/icons/profilePage.svg');
 
@@ -69,6 +72,7 @@ class $AssetsIconsGen {
         eyeOn,
         homeMenuTab,
         eyeOff,
+        close,
         wifi,
         home,
         profile,
