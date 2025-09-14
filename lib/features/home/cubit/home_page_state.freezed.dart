@@ -20,7 +20,10 @@ mixin _$HomePageState {
   List<dynamic> get images => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
-  Module? get module => throw _privateConstructorUsedError;
+  List<Module> get modules =>
+      throw _privateConstructorUsedError; // 👉 list modules để hiển thị UI
+  Module? get selectedModule =>
+      throw _privateConstructorUsedError; // 👉 module người dùng chọn khi add room
   String? get homeId => throw _privateConstructorUsedError;
   List<Room> get rooms => throw _privateConstructorUsedError;
   WeatherForecast? get weatherForecast => throw _privateConstructorUsedError;
@@ -45,14 +48,15 @@ abstract class $HomePageStateCopyWith<$Res> {
       List<dynamic> images,
       String? name,
       String? image,
-      Module? module,
+      List<Module> modules,
+      Module? selectedModule,
       String? homeId,
       List<Room> rooms,
       WeatherForecast? weatherForecast,
       AppError? error,
       bool isSuccess});
 
-  $ModuleCopyWith<$Res>? get module;
+  $ModuleCopyWith<$Res>? get selectedModule;
   $WeatherForecastCopyWith<$Res>? get weatherForecast;
   $AppErrorCopyWith<$Res>? get error;
 }
@@ -76,7 +80,8 @@ class _$HomePageStateCopyWithImpl<$Res, $Val extends HomePageState>
     Object? images = null,
     Object? name = freezed,
     Object? image = freezed,
-    Object? module = freezed,
+    Object? modules = null,
+    Object? selectedModule = freezed,
     Object? homeId = freezed,
     Object? rooms = null,
     Object? weatherForecast = freezed,
@@ -100,9 +105,13 @@ class _$HomePageStateCopyWithImpl<$Res, $Val extends HomePageState>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
-      module: freezed == module
-          ? _value.module
-          : module // ignore: cast_nullable_to_non_nullable
+      modules: null == modules
+          ? _value.modules
+          : modules // ignore: cast_nullable_to_non_nullable
+              as List<Module>,
+      selectedModule: freezed == selectedModule
+          ? _value.selectedModule
+          : selectedModule // ignore: cast_nullable_to_non_nullable
               as Module?,
       homeId: freezed == homeId
           ? _value.homeId
@@ -131,13 +140,13 @@ class _$HomePageStateCopyWithImpl<$Res, $Val extends HomePageState>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ModuleCopyWith<$Res>? get module {
-    if (_value.module == null) {
+  $ModuleCopyWith<$Res>? get selectedModule {
+    if (_value.selectedModule == null) {
       return null;
     }
 
-    return $ModuleCopyWith<$Res>(_value.module!, (value) {
-      return _then(_value.copyWith(module: value) as $Val);
+    return $ModuleCopyWith<$Res>(_value.selectedModule!, (value) {
+      return _then(_value.copyWith(selectedModule: value) as $Val);
     });
   }
 
@@ -183,7 +192,8 @@ abstract class _$$HomePageStateImplCopyWith<$Res>
       List<dynamic> images,
       String? name,
       String? image,
-      Module? module,
+      List<Module> modules,
+      Module? selectedModule,
       String? homeId,
       List<Room> rooms,
       WeatherForecast? weatherForecast,
@@ -191,7 +201,7 @@ abstract class _$$HomePageStateImplCopyWith<$Res>
       bool isSuccess});
 
   @override
-  $ModuleCopyWith<$Res>? get module;
+  $ModuleCopyWith<$Res>? get selectedModule;
   @override
   $WeatherForecastCopyWith<$Res>? get weatherForecast;
   @override
@@ -215,7 +225,8 @@ class __$$HomePageStateImplCopyWithImpl<$Res>
     Object? images = null,
     Object? name = freezed,
     Object? image = freezed,
-    Object? module = freezed,
+    Object? modules = null,
+    Object? selectedModule = freezed,
     Object? homeId = freezed,
     Object? rooms = null,
     Object? weatherForecast = freezed,
@@ -239,9 +250,13 @@ class __$$HomePageStateImplCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
-      module: freezed == module
-          ? _value.module
-          : module // ignore: cast_nullable_to_non_nullable
+      modules: null == modules
+          ? _value._modules
+          : modules // ignore: cast_nullable_to_non_nullable
+              as List<Module>,
+      selectedModule: freezed == selectedModule
+          ? _value.selectedModule
+          : selectedModule // ignore: cast_nullable_to_non_nullable
               as Module?,
       homeId: freezed == homeId
           ? _value.homeId
@@ -275,13 +290,15 @@ class _$HomePageStateImpl extends _HomePageState {
       final List<dynamic> images = const [],
       this.name,
       this.image,
-      this.module,
+      final List<Module> modules = const [],
+      this.selectedModule,
       this.homeId,
       final List<Room> rooms = const [],
       this.weatherForecast,
       this.error,
       this.isSuccess = false})
       : _images = images,
+        _modules = modules,
         _rooms = rooms,
         super._();
 
@@ -301,8 +318,19 @@ class _$HomePageStateImpl extends _HomePageState {
   final String? name;
   @override
   final String? image;
+  final List<Module> _modules;
   @override
-  final Module? module;
+  @JsonKey()
+  List<Module> get modules {
+    if (_modules is EqualUnmodifiableListView) return _modules;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_modules);
+  }
+
+// 👉 list modules để hiển thị UI
+  @override
+  final Module? selectedModule;
+// 👉 module người dùng chọn khi add room
   @override
   final String? homeId;
   final List<Room> _rooms;
@@ -324,7 +352,7 @@ class _$HomePageStateImpl extends _HomePageState {
 
   @override
   String toString() {
-    return 'HomePageState(isLoading: $isLoading, images: $images, name: $name, image: $image, module: $module, homeId: $homeId, rooms: $rooms, weatherForecast: $weatherForecast, error: $error, isSuccess: $isSuccess)';
+    return 'HomePageState(isLoading: $isLoading, images: $images, name: $name, image: $image, modules: $modules, selectedModule: $selectedModule, homeId: $homeId, rooms: $rooms, weatherForecast: $weatherForecast, error: $error, isSuccess: $isSuccess)';
   }
 
   @override
@@ -337,7 +365,9 @@ class _$HomePageStateImpl extends _HomePageState {
             const DeepCollectionEquality().equals(other._images, _images) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.image, image) || other.image == image) &&
-            (identical(other.module, module) || other.module == module) &&
+            const DeepCollectionEquality().equals(other._modules, _modules) &&
+            (identical(other.selectedModule, selectedModule) ||
+                other.selectedModule == selectedModule) &&
             (identical(other.homeId, homeId) || other.homeId == homeId) &&
             const DeepCollectionEquality().equals(other._rooms, _rooms) &&
             (identical(other.weatherForecast, weatherForecast) ||
@@ -354,7 +384,8 @@ class _$HomePageStateImpl extends _HomePageState {
       const DeepCollectionEquality().hash(_images),
       name,
       image,
-      module,
+      const DeepCollectionEquality().hash(_modules),
+      selectedModule,
       homeId,
       const DeepCollectionEquality().hash(_rooms),
       weatherForecast,
@@ -376,7 +407,8 @@ abstract class _HomePageState extends HomePageState {
       final List<dynamic> images,
       final String? name,
       final String? image,
-      final Module? module,
+      final List<Module> modules,
+      final Module? selectedModule,
       final String? homeId,
       final List<Room> rooms,
       final WeatherForecast? weatherForecast,
@@ -393,7 +425,9 @@ abstract class _HomePageState extends HomePageState {
   @override
   String? get image;
   @override
-  Module? get module;
+  List<Module> get modules; // 👉 list modules để hiển thị UI
+  @override
+  Module? get selectedModule; // 👉 module người dùng chọn khi add room
   @override
   String? get homeId;
   @override

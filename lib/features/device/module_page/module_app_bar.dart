@@ -47,11 +47,11 @@ class ModuleAppBar extends StatelessWidget implements PreferredSizeWidget {
               shape: BoxShape.circle,
             ),
             alignment: Alignment.center,
-            // child: Assets.icons.notification.svg(
-            //   color: context.colors.primaryButton,
-            //   width: 20,
-            //   height: 20,
-            // ),
+            child: Assets.icons.bell.svg(
+              color: context.colors.primaryButton,
+              width: 20,
+              height: 20,
+            ),
           ),
         ),
         const SizedBox(width: 12),

@@ -13,8 +13,8 @@ import 'package:smart_home/shared/widgets/app_text_form_field.dart';
 import 'package:smart_home/shared/widgets/simple_toastification.dart';
 
 class AddRoom extends StatefulWidget {
-  final List<Module> modules;
-  const AddRoom({super.key, required this.modules});
+final List<Module> module;
+  const AddRoom({super.key, required this.module});
 
   @override
   State<AddRoom> createState() => _AddRoomState();
@@ -60,7 +60,9 @@ class _AddRoomState extends State<AddRoom> {
       listenWhen: (prev, curr) => prev.isSuccess != curr.isSuccess,
       listener: (context, state) {
         if (state.isSuccess) {
-          Navigator.pop(context, );
+          Navigator.pop(
+            context,
+          );
           showSuccessToast('Add Room Successfully');
         }
       },
@@ -262,34 +264,37 @@ class _AddRoomState extends State<AddRoom> {
                               : SizedBox(
                                   height: 130,
                                   child: PageView.builder(
-                                    controller: _modulePageController,
-                                    itemCount: widget.modules.length,
-                                    itemBuilder: (context, index) {
-                                      double scale = 1.0;
-                                      double difference =
-                                          (_currentModulePage - index).abs();
-                                      if (difference > 0)
-                                        scale = 1 - (difference * 0.2);
-
-                                      return Transform.scale(
-                                        scale: scale,
-                                        child: ModuleItem(
-                                          module: widget.modules[index],
-                                          isSelected:
-                                              selectedModuleIndex == index,
-                                          onTap: () {
-                                            setState(() {
-                                              selectedModuleIndex = index;
-                                            });
-                                            context
-                                                .read<HomePageCubit>()
-                                                .setModule(widget.modules[
-                                                    selectedModuleIndex!]);
-                                          },
-                                        ),
-                                      );
-                                    },
-                                  ),
+                                        controller: _modulePageController,
+                                        itemCount: widget.module.length,
+                                        itemBuilder: (context, index) {
+                                          double scale = 1.0;
+                                          double difference =
+                                              (_currentModulePage - index).abs();
+                                          if (difference > 0)
+                                            scale = 1 - (difference * 0.2);
+                                      
+                                          return Transform.scale(
+                                            scale: scale,
+                                            child: ModuleItem(
+                                              module: widget.module[index],
+                                              isSelected:
+                                                  selectedModuleIndex == index,
+                                              onTap: () {
+                                                setState(() {
+                                                  selectedModuleIndex = index;
+                                                });
+                                                context
+                                                    .read<HomePageCubit>()
+                                                    .selectModule(
+                                                      widget.module[selectedModuleIndex!],
+                                                    );
+                                              },
+                                            ),
+                                          );
+                                        },
+                                      )
+                                    
+                                  
                                 ))
                     ],
                   ),

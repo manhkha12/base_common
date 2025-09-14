@@ -12,21 +12,25 @@ class HomePageState with _$HomePageState {
     @Default([]) List<dynamic> images,
     String? name,
     String? image,
-    Module? module,
+    @Default([]) List<Module> modules, // 👉 list modules để hiển thị UI
+    Module? selectedModule,            // 👉 module người dùng chọn khi add room
     String? homeId,
     @Default([]) List<Room> rooms,
     WeatherForecast? weatherForecast,
     AppError? error,
     @Default(false) bool isSuccess,
   }) = _HomePageState;
+
   HomePageState._();
 
   Map<String, dynamic> toParms() {
     return {
       'home_id': homeId,
       'name': name,
-      'modules': module != null ? [module!.id] : [],
+      // khi tạo home thì chỉ gửi selectedModule thôi
+      'modules': selectedModule != null ? [selectedModule!.id] : [],
       'background': image,
     };
   }
 }
+

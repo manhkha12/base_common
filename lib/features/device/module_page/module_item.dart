@@ -186,25 +186,35 @@ class ModuleItem extends StatelessWidget {
                   ),
                 ),
               ),
-              child: Column(
+              child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 10),
                     child: Wrap(
                       spacing: 6,
                       runAlignment: WrapAlignment.center,
                       crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         Assets.icons.wifi.svg(
-                          width: 16,
-                          height: 16,
+                          width: 26,
+                          height: 26,
                           color: module.isOnline
                               ? context.colors.onlineColor
                               : context.colors.disableIcon,
                         ),
                       ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: Assets.icons.chip.svg(),
+                      ),
                     ),
                   ),
                 ],

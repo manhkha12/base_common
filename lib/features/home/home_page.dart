@@ -10,6 +10,7 @@ import 'package:smart_home/features/home/cubit/home_page_state.dart';
 import 'package:smart_home/gen/assets.gen.dart';
 import 'package:smart_home/models/room.dart';
 import 'package:smart_home/models/weather_forecast.dart';
+import 'package:smart_home/routes.dart';
 import 'package:smart_home/shared/extensions/build_context_extension.dart';
 import 'package:smart_home/shared/widgets/app_text.dart';
 
@@ -91,10 +92,10 @@ class _HomePageState extends State<HomePage> {
                           return MultiBlocProvider(
                               providers: [
                                 BlocProvider.value(value: homeCubit),
-                                BlocProvider.value(value: moduleCubit),
+                                // BlocProvider.value(value: moduleCubit),
                               ],
                               child: AddRoom(
-                                modules: moduleCubit.state.modules,
+                                module: [...moduleCubit.state.modules],
                               ));
                         },
                       );
@@ -127,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                       crossAxisCount: 2,
                       mainAxisSpacing: 10,
                       crossAxisSpacing: 10,
-                      childAspectRatio: 1 / 1.2 ,
+                      childAspectRatio: 1 / 1.2,
                     ),
                     itemCount: rooms.length,
                     itemBuilder: (context, index) =>
@@ -149,47 +150,54 @@ class ListRooms extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 60,
-      decoration: BoxDecoration(
-        border: Border.all(color: context.colors.divider),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: ClipRRect(
-        borderRadius:
-            const BorderRadiusDirectional.vertical(top: Radius.circular(10)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CachedNetworkImage(
-              imageUrl: room.background ?? "",
-              height: 150,
-              width: double.infinity,
-              fit: BoxFit.cover,
-            ),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.only(left: 8.0),
-                child: Center(
-                  child: AppText(
-                    room.name,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, RouteName.roomDetail, arguments: {
+          'room': room,
+        });
+      },
+      child: Container(
+        height: 60,
+        decoration: BoxDecoration(
+          border: Border.all(color: context.colors.divider),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: ClipRRect(
+          borderRadius:
+              const BorderRadiusDirectional.vertical(top: Radius.circular(10)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CachedNetworkImage(
+                imageUrl: room.background ?? "",
+                height: 150,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(left: 8.0),
+                  child: Center(
+                    child: AppText(
+                      room.name,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
-            ),
-            // Padding(
-            //   padding: EdgeInsets.only(left: 8.0, bottom: 10.0),
-            //   child: Center(
-            //     child: AppText(
-            //       "${room.} VNĐ", // Hiển thị giá
-            //       fontSize: 14,
-            //       fontWeight: FontWeight.bold,
-            //     ),
-            //   ),
-            // ),
-          ],
+              // Padding(
+              //   padding: EdgeInsets.only(left: 8.0, bottom: 10.0),
+              //   child: Center(
+              //     child: AppText(
+              //       "${room.} VNĐ", // Hiển thị giá
+              //       fontSize: 14,
+              //       fontWeight: FontWeight.bold,
+              //     ),
+              //   ),
+              // ),
+            ],
+          ),
         ),
       ),
     );
@@ -238,7 +246,7 @@ class _WeatherTemplateState extends State<WeatherTemplate> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
-                    height: 78,
+                    height: 74,
                     child: Image.network(
                       "https://openweathermap.org/img/wn/${weatherForecast.icon}@2x.png",
                     ),
@@ -254,7 +262,7 @@ class _WeatherTemplateState extends State<WeatherTemplate> {
                   SizedBox(width: 20),
                   AppText(
                     "${weatherForecast.temperature.toStringAsFixed(0)}°",
-                    fontSize: 38,
+                    fontSize: 35,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),

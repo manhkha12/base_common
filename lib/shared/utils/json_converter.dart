@@ -29,3 +29,18 @@ class DateTimeOrNullConverter implements JsonConverter<DateTime?, String?> {
       ? null
       : DateFormat('yyyy-MM-ddTHH:mm:ssZ').format(datetime);
 }
+class StateConverter implements JsonConverter<int?, String?> {
+  const StateConverter();
+
+  @override
+  int? fromJson(String? json) {
+    if (json == null) return null;
+    return json.toLowerCase() == "on" ? 1 : 0;
+  }
+
+  @override
+  String? toJson(int? object) {
+    if (object == null) return null;
+    return object == 1 ? "on" : "off";
+  }
+}

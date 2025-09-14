@@ -10,13 +10,16 @@ class ShortDeviceInfo with _$ShortDeviceInfo {
     @JsonKey(name: 'firmware_version') required String firmwareVersion,
     @JsonKey(name: 'product_version') required String productVersion,
     @JsonKey(name: 'mac_address') required String macAddress,
-    @JsonKey(name: 'chip_id') required String chipId,
+    @JsonKey(name: 'chip_id') required int chipId,
     @JsonKey(name: 'device_name') required String deviceName,
+    @JsonKey(name: 'product_copyright') String? productCopyright, // optional
+    @JsonKey(name: 'ip_address') String? ipAddress, // optional
   }) = _ShortDeviceInfo;
 
   factory ShortDeviceInfo.fromJson(Map<String, dynamic> json) =>
       _$ShortDeviceInfoFromJson(json);
 }
+
 
 @freezed
 class WiFiInfo with _$WiFiInfo {

@@ -55,7 +55,7 @@ class SelectWiFiPage extends StatelessWidget {
                       const AppText('Mã thiết bị', fontSize: 16),
                       Expanded(
                         child: AppText(
-                          deviceInfo.chipId,
+                          "${deviceInfo.chipId}",
                           fontSize: 16,
                           textAlign: TextAlign.right,
                         ),
@@ -89,7 +89,8 @@ class SelectWiFiPage extends StatelessWidget {
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8),
-                          child: BlocSelector<AddModuleCubit, AddModuleState, bool>(
+                          child: BlocSelector<AddModuleCubit, AddModuleState,
+                              bool>(
                             selector: (state) => state.isRefreshing,
                             builder: (context, isRefreshing) {
                               if (isRefreshing) {
@@ -116,7 +117,8 @@ class SelectWiFiPage extends StatelessWidget {
                           _inputWiFiCredential(context, ssid: wifi.ssid);
                         },
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 5),
                           child: Row(
                             children: [
                               Expanded(
@@ -178,7 +180,8 @@ class _RefreshingIcon extends StatefulWidget {
   State<_RefreshingIcon> createState() => __RefreshingIconState();
 }
 
-class __RefreshingIconState extends State<_RefreshingIcon> with SingleTickerProviderStateMixin {
+class __RefreshingIconState extends State<_RefreshingIcon>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   @override
   void initState() {
@@ -199,7 +202,8 @@ class __RefreshingIconState extends State<_RefreshingIcon> with SingleTickerProv
   Widget build(BuildContext context) {
     return RotationTransition(
       turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
-      child: Assets.icons.refresh.svg(color: context.colors.textSecondary, width: 20),
+      child: Assets.icons.refresh
+          .svg(color: context.colors.textSecondary, width: 20),
     );
   }
 }

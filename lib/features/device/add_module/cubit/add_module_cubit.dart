@@ -99,16 +99,15 @@ class AddModuleCubit extends Cubit<AddModuleState> {
     }
     try {
       emit(state.copyWith(isConnecting: true));
-      print('isConnecting before: ${state.isConnecting}');
       await moduleRespository.connectWifi(ssid, password, state.ownerId!);
-      await Future.delayed(const Duration(seconds: 10));
+      await Future.delayed(const Duration(seconds: 30));
       await retryableWrapper(
         Connectivity().checkConnectivity,
         retryWhen: (results) =>
             results.equals([ConnectivityResult.none]) ||
             results.equals([ConnectivityResult.bluetooth]),
-        retryInterval: const Duration(seconds: 5),
-        timeout: const Duration(minutes: 3),
+        retryInterval: const Duration(seconds: 10),
+        timeout: const Duration(minutes: 10),
       );
       final addedModule = await retryableWrapper(
         () => moduleRespository.moduleDetails(state.deviceInfo!.chipId),

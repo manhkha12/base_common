@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:smart_home/models/node.dart';
 import 'package:smart_home/models/room.dart';
+import 'package:smart_home/models/sensor.dart';
 import 'package:smart_home/shared/utils/json_converter.dart';
 
 part 'module.freezed.dart';
@@ -20,9 +21,10 @@ class Module with _$Module {
     @JsonKey(name: 'users') List<String>? userIds,
     @JsonKey(name: 'owner_id') String? ownerId,
     @JsonKey(name: 'created_at') DateTime? createdAt,
-    @Default([]) List<Node> nodes,
-    @Default([]) List<Room>? rooms,
-    // @Default([]) List<Sensor> sensors,
+    // @Default([]) List<Node> nodes,
+    @Default([]) List<Room> rooms,
+    
+    @Default([]) List<Sensor> sensors,
     @JsonKey(name: 'updated_at') @DateTimeConverter() DateTime? updatedAt,
     @JsonKey(name: 'active_at') @DateTimeOrNullConverter() DateTime? activeAt,
     @JsonKey(name: 'mac_address') required String macAddress,
@@ -35,7 +37,7 @@ class Module with _$Module {
 
   factory Module.fromJson(Map<String, dynamic> json) => _$ModuleFromJson(json);
 
-  int get totalControlItems => nodes.length; //+ sensors.length
+  int get totalControlItems => sensors.length; //+ nodes.length
 }
 
 @freezed
