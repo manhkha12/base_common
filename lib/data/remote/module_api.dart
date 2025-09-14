@@ -81,7 +81,7 @@ class ModuleApi {
     return resp;
   }
 
-  Future<Map<String, dynamic>> moduleDetail(String moduleId) async {
+  Future<Map<String, dynamic>> moduleDetail(int moduleId) async {
     final resp = await apiHandler.get(
       '/module/$moduleId',
     );
@@ -95,6 +95,7 @@ class ModuleApi {
   }
 
   Future<Map<String, dynamic>> addRoom(Map<String, dynamic> params) async {
+    
     final resp = await apiHandler.post('/rooms/create', body: params);
 
     return resp;
@@ -104,8 +105,9 @@ class ModuleApi {
     final resp = await apiHandler.get('/images/image');
     return resp;
   }
-  Future<List<dynamic>> getRooms(
-      String homeId) async {
+
+  Future<List<dynamic>> getRooms(String homeId) async {
+    
     final resp = await apiHandler.get('/rooms/home/$homeId');
     return resp;
   }

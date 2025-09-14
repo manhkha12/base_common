@@ -67,12 +67,13 @@ class ModuleRespository {
     }
   }
 
-  Future<Module> moduleDetails(String id) async {
+  Future<Module> moduleDetails(int id) async {
     final resp = await moduleApi.moduleDetail(id);
     return Module.fromJson(resp);
   }
 
   Future<List<Module>> getModules() async {
+    
     final resp = await moduleApi.getModules();
     return resp.map((e) => Module.fromJson(e)).toList();
   }
@@ -82,8 +83,14 @@ class ModuleRespository {
     return WeatherForecast.fromJson(resp);
   }
 
-  Future<void> addRoom(Map<String, dynamic> params) async {
-    await moduleApi.addRoom(params);
+  Future<Room> addRoom(Map<String, dynamic> params) async {
+    try {
+   final resp = await moduleApi.addRoom(params);
+   return Room.fromJson(resp); }
+   catch (e) {
+      print('❌ Error adding room: $e');
+      throw Exception('Failed to add room: $e');
+    }
   }
   // Future<Map<String, dynamic>> addRoom(Map<String, dynamic> params) async {
   //   final resp = await moduleApi.addRoom(params);
@@ -95,6 +102,7 @@ class ModuleRespository {
     return resp;
   }
   Future<List<Room>> getRooms(String homeId) async {
+    
     final resp = await moduleApi.getRooms(homeId);
     return resp.map((e) => Room.fromJson(e)).toList();
   }

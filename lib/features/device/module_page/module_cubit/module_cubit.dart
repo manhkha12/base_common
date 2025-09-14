@@ -94,6 +94,9 @@ class ModuleCubit extends Cubit<ModuleState> {
     try {
       emit(state.copyWith(isLoading: !isRefreshing));
       final modules = await moduleRespository.getModules();
+      print('--- ModuleCubit ---');
+      print('fetched modules: $modules');
+      print('fetched modules length: ${modules.length}');
       emit(state.copyWith(modules: modules, isLoading: false));
     } catch (e) {
       emit(state.copyWith(isLoading: false));

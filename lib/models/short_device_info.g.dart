@@ -13,8 +13,10 @@ _$ShortDeviceInfoImpl _$$ShortDeviceInfoImplFromJson(
       firmwareVersion: json['firmware_version'] as String,
       productVersion: json['product_version'] as String,
       macAddress: json['mac_address'] as String,
-      chipId: json['chip_id'] as String,
+      chipId: (json['chip_id'] as num).toInt(),
       deviceName: json['device_name'] as String,
+      productCopyright: json['product_copyright'] as String?,
+      ipAddress: json['ip_address'] as String?,
     );
 
 Map<String, dynamic> _$$ShortDeviceInfoImplToJson(
@@ -26,6 +28,8 @@ Map<String, dynamic> _$$ShortDeviceInfoImplToJson(
       'mac_address': instance.macAddress,
       'chip_id': instance.chipId,
       'device_name': instance.deviceName,
+      'product_copyright': instance.productCopyright,
+      'ip_address': instance.ipAddress,
     };
 
 _$WiFiInfoImpl _$$WiFiInfoImplFromJson(Map<String, dynamic> json) =>

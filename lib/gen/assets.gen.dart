@@ -49,6 +49,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/close.svg
   SvgGenImage get close => const SvgGenImage('assets/icons/close.svg');
 
+  /// File path: assets/icons/chip.svg
+  SvgGenImage get chip => const SvgGenImage('assets/icons/chip.svg');
+
   /// File path: assets/icons/profile.svg
   SvgGenImage get profile => const SvgGenImage('assets/icons/profilePage.svg');
 
@@ -65,17 +68,25 @@ class $AssetsIconsGen {
   /// File path: assets/icons/plus.svg
   SvgGenImage get plus => const SvgGenImage('assets/icons/plussvg.svg');
 
+  /// File path: assets/icons/right.svg
+  SvgGenImage get right => const SvgGenImage('assets/icons/right.svg');
+
+  /// File path: assets/icons/bell.svg
+  SvgGenImage get bell => const SvgGenImage('assets/icons/bell.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
         boardIcon,
         iconBack,
         eyeOn,
         homeMenuTab,
+        chip,
         eyeOff,
         close,
         wifi,
         home,
         profile,
+        right,
         device,
         plus,
         refresh

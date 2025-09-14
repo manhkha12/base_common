@@ -29,9 +29,14 @@ mixin _$ShortDeviceInfo {
   @JsonKey(name: 'mac_address')
   String get macAddress => throw _privateConstructorUsedError;
   @JsonKey(name: 'chip_id')
-  String get chipId => throw _privateConstructorUsedError;
+  int get chipId => throw _privateConstructorUsedError;
   @JsonKey(name: 'device_name')
   String get deviceName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'product_copyright')
+  String? get productCopyright =>
+      throw _privateConstructorUsedError; // optional
+  @JsonKey(name: 'ip_address')
+  String? get ipAddress => throw _privateConstructorUsedError;
 
   /// Serializes this ShortDeviceInfo to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -54,8 +59,10 @@ abstract class $ShortDeviceInfoCopyWith<$Res> {
       @JsonKey(name: 'firmware_version') String firmwareVersion,
       @JsonKey(name: 'product_version') String productVersion,
       @JsonKey(name: 'mac_address') String macAddress,
-      @JsonKey(name: 'chip_id') String chipId,
-      @JsonKey(name: 'device_name') String deviceName});
+      @JsonKey(name: 'chip_id') int chipId,
+      @JsonKey(name: 'device_name') String deviceName,
+      @JsonKey(name: 'product_copyright') String? productCopyright,
+      @JsonKey(name: 'ip_address') String? ipAddress});
 }
 
 /// @nodoc
@@ -79,6 +86,8 @@ class _$ShortDeviceInfoCopyWithImpl<$Res, $Val extends ShortDeviceInfo>
     Object? macAddress = null,
     Object? chipId = null,
     Object? deviceName = null,
+    Object? productCopyright = freezed,
+    Object? ipAddress = freezed,
   }) {
     return _then(_value.copyWith(
       mcuType: null == mcuType
@@ -100,11 +109,19 @@ class _$ShortDeviceInfoCopyWithImpl<$Res, $Val extends ShortDeviceInfo>
       chipId: null == chipId
           ? _value.chipId
           : chipId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       deviceName: null == deviceName
           ? _value.deviceName
           : deviceName // ignore: cast_nullable_to_non_nullable
               as String,
+      productCopyright: freezed == productCopyright
+          ? _value.productCopyright
+          : productCopyright // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ipAddress: freezed == ipAddress
+          ? _value.ipAddress
+          : ipAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -122,8 +139,10 @@ abstract class _$$ShortDeviceInfoImplCopyWith<$Res>
       @JsonKey(name: 'firmware_version') String firmwareVersion,
       @JsonKey(name: 'product_version') String productVersion,
       @JsonKey(name: 'mac_address') String macAddress,
-      @JsonKey(name: 'chip_id') String chipId,
-      @JsonKey(name: 'device_name') String deviceName});
+      @JsonKey(name: 'chip_id') int chipId,
+      @JsonKey(name: 'device_name') String deviceName,
+      @JsonKey(name: 'product_copyright') String? productCopyright,
+      @JsonKey(name: 'ip_address') String? ipAddress});
 }
 
 /// @nodoc
@@ -145,6 +164,8 @@ class __$$ShortDeviceInfoImplCopyWithImpl<$Res>
     Object? macAddress = null,
     Object? chipId = null,
     Object? deviceName = null,
+    Object? productCopyright = freezed,
+    Object? ipAddress = freezed,
   }) {
     return _then(_$ShortDeviceInfoImpl(
       mcuType: null == mcuType
@@ -166,11 +187,19 @@ class __$$ShortDeviceInfoImplCopyWithImpl<$Res>
       chipId: null == chipId
           ? _value.chipId
           : chipId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       deviceName: null == deviceName
           ? _value.deviceName
           : deviceName // ignore: cast_nullable_to_non_nullable
               as String,
+      productCopyright: freezed == productCopyright
+          ? _value.productCopyright
+          : productCopyright // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ipAddress: freezed == ipAddress
+          ? _value.ipAddress
+          : ipAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -184,7 +213,9 @@ class _$ShortDeviceInfoImpl implements _ShortDeviceInfo {
       @JsonKey(name: 'product_version') required this.productVersion,
       @JsonKey(name: 'mac_address') required this.macAddress,
       @JsonKey(name: 'chip_id') required this.chipId,
-      @JsonKey(name: 'device_name') required this.deviceName});
+      @JsonKey(name: 'device_name') required this.deviceName,
+      @JsonKey(name: 'product_copyright') this.productCopyright,
+      @JsonKey(name: 'ip_address') this.ipAddress});
 
   factory _$ShortDeviceInfoImpl.fromJson(Map<String, dynamic> json) =>
       _$$ShortDeviceInfoImplFromJson(json);
@@ -203,14 +234,21 @@ class _$ShortDeviceInfoImpl implements _ShortDeviceInfo {
   final String macAddress;
   @override
   @JsonKey(name: 'chip_id')
-  final String chipId;
+  final int chipId;
   @override
   @JsonKey(name: 'device_name')
   final String deviceName;
+  @override
+  @JsonKey(name: 'product_copyright')
+  final String? productCopyright;
+// optional
+  @override
+  @JsonKey(name: 'ip_address')
+  final String? ipAddress;
 
   @override
   String toString() {
-    return 'ShortDeviceInfo(mcuType: $mcuType, firmwareVersion: $firmwareVersion, productVersion: $productVersion, macAddress: $macAddress, chipId: $chipId, deviceName: $deviceName)';
+    return 'ShortDeviceInfo(mcuType: $mcuType, firmwareVersion: $firmwareVersion, productVersion: $productVersion, macAddress: $macAddress, chipId: $chipId, deviceName: $deviceName, productCopyright: $productCopyright, ipAddress: $ipAddress)';
   }
 
   @override
@@ -227,13 +265,25 @@ class _$ShortDeviceInfoImpl implements _ShortDeviceInfo {
                 other.macAddress == macAddress) &&
             (identical(other.chipId, chipId) || other.chipId == chipId) &&
             (identical(other.deviceName, deviceName) ||
-                other.deviceName == deviceName));
+                other.deviceName == deviceName) &&
+            (identical(other.productCopyright, productCopyright) ||
+                other.productCopyright == productCopyright) &&
+            (identical(other.ipAddress, ipAddress) ||
+                other.ipAddress == ipAddress));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, mcuType, firmwareVersion,
-      productVersion, macAddress, chipId, deviceName);
+  int get hashCode => Object.hash(
+      runtimeType,
+      mcuType,
+      firmwareVersion,
+      productVersion,
+      macAddress,
+      chipId,
+      deviceName,
+      productCopyright,
+      ipAddress);
 
   /// Create a copy of ShortDeviceInfo
   /// with the given fields replaced by the non-null parameter values.
@@ -258,9 +308,11 @@ abstract class _ShortDeviceInfo implements ShortDeviceInfo {
       @JsonKey(name: 'firmware_version') required final String firmwareVersion,
       @JsonKey(name: 'product_version') required final String productVersion,
       @JsonKey(name: 'mac_address') required final String macAddress,
-      @JsonKey(name: 'chip_id') required final String chipId,
-      @JsonKey(name: 'device_name')
-      required final String deviceName}) = _$ShortDeviceInfoImpl;
+      @JsonKey(name: 'chip_id') required final int chipId,
+      @JsonKey(name: 'device_name') required final String deviceName,
+      @JsonKey(name: 'product_copyright') final String? productCopyright,
+      @JsonKey(name: 'ip_address')
+      final String? ipAddress}) = _$ShortDeviceInfoImpl;
 
   factory _ShortDeviceInfo.fromJson(Map<String, dynamic> json) =
       _$ShortDeviceInfoImpl.fromJson;
@@ -279,10 +331,16 @@ abstract class _ShortDeviceInfo implements ShortDeviceInfo {
   String get macAddress;
   @override
   @JsonKey(name: 'chip_id')
-  String get chipId;
+  int get chipId;
   @override
   @JsonKey(name: 'device_name')
   String get deviceName;
+  @override
+  @JsonKey(name: 'product_copyright')
+  String? get productCopyright; // optional
+  @override
+  @JsonKey(name: 'ip_address')
+  String? get ipAddress;
 
   /// Create a copy of ShortDeviceInfo
   /// with the given fields replaced by the non-null parameter values.

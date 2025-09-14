@@ -8,10 +8,10 @@ import 'package:smart_home/features/device/module_page/module_cubit/module_cubit
 import 'package:smart_home/features/device/module_page/module_item.dart';
 import 'package:smart_home/features/device/module_page/no_module.dart';
 import 'package:smart_home/features/localization/localizations.dart';
+import 'package:smart_home/routes.dart';
 import 'package:smart_home/shared/cubits/socket_cubit/socket_cubit.dart';
 import 'package:smart_home/shared/extensions/build_context_extension.dart';
 import 'package:smart_home/shared/widgets/app_circle_loading.dart';
-
 
 class ModulePage extends StatefulWidget {
   const ModulePage({super.key});
@@ -70,6 +70,7 @@ class _ModulePageState extends State<ModulePage> with WidgetsBindingObserver {
             return const Center(child: AppCircleLoading());
           }
           final modules = state.modules;
+          
           if (modules.isEmpty) {
             return const NoModules();
           }
@@ -79,7 +80,18 @@ class _ModulePageState extends State<ModulePage> with WidgetsBindingObserver {
               slivers: [
                 SliverDynamicHeightGridView(
                   builder: (_, index) {
-                    return ModuleItem(module: modules[index]);
+                    return ModuleItem(
+                      module: modules[index],
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          RouteName.moduleDetail,
+                          arguments: {
+                            'module': modules[index], // truyền 1 module
+                          },
+                        );
+                      },
+                    );
                   },
                   itemCount: modules.length,
                   crossAxisCount: 2,

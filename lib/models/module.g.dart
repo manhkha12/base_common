@@ -21,12 +21,12 @@ _$ModuleImpl _$$ModuleImplFromJson(Map<String, dynamic> json) => _$ModuleImpl(
       createdAt: json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String),
-      nodes: (json['nodes'] as List<dynamic>?)
-              ?.map((e) => Node.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
       rooms: (json['rooms'] as List<dynamic>?)
               ?.map((e) => Room.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      sensors: (json['sensors'] as List<dynamic>?)
+              ?.map((e) => Sensor.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       updatedAt: _$JsonConverterFromJson<String, DateTime>(
@@ -54,8 +54,8 @@ Map<String, dynamic> _$$ModuleImplToJson(_$ModuleImpl instance) =>
       'users': instance.userIds,
       'owner_id': instance.ownerId,
       'created_at': instance.createdAt?.toIso8601String(),
-      'nodes': instance.nodes,
       'rooms': instance.rooms,
+      'sensors': instance.sensors,
       'updated_at': _$JsonConverterToJson<String, DateTime>(
           instance.updatedAt, const DateTimeConverter().toJson),
       'active_at': const DateTimeOrNullConverter().toJson(instance.activeAt),
